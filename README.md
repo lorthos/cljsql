@@ -1,10 +1,10 @@
 # cljsql
 
-A Clojure library designed to ... well, that part is up to you.
+Instaparse playgroud
 
 ## Usage
 
-FIXME
+        lein repl
 
 ## License
 

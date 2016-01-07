@@ -18,3 +18,6 @@
      ORDER_CLAUSE       = <ORDER_STMT>  (#'[a-z|A-Z|_| |>|<|=|0-9|?|\\'|%]+')
      "
     :string-ci true))
+
+;antlr
+;https://github.com/srikalyc/Sql4D/blob/2c052fe60ead5a16277c798a3440de7d4f6f24f6/Sql4DCompiler/src/main/java/com/yahoo/sql4d/converter/druidG.tokens

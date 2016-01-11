@@ -1,6 +1,7 @@
 (ns cljsql.core-test
   (:require [clojure.test :refer :all]
-            [cljsql.core :refer :all]))
+            [cljsql.core :refer :all])
+  (:import (org.apache.calcite.sql SqlSelect)))
 
 (defn sql [stmt] (parse-sql stmt))
 (defn sql! [stmt] (parse-sql stmt :unhide :content))
@@ -20,8 +21,5 @@
              [:PREDICATE
               "x=y"]]]
            ))
-    ;todo parse predicates properly
-    (is (= (sql "select * from table where x=y and 1=1")
-           nil
-           ))
+    (is (.hasWhere ^SqlSelect (parse "select * from table1 where x=y and 1=1")))
     ))

@@ -1,5 +1,6 @@
 (ns cljsql.core
-  (:require [instaparse.core :as insta]))
+  (:require [instaparse.core :as insta])
+  (:import (org.apache.calcite.sql.parser SqlParser)))
 
 (def parse-sql
   (insta/parser
@@ -21,3 +22,16 @@
 
 ;antlr
 ;https://github.com/srikalyc/Sql4D/blob/2c052fe60ead5a16277c798a3440de7d4f6f24f6/Sql4DCompiler/src/main/java/com/yahoo/sql4d/converter/druidG.tokens
+
+
+(defn get-parser-config []
+  (let [config-builder (doto
+                         (SqlParser/configBuilder)
+                         (.setCaseSensitive false))]
+    (.build config-builder)))
+
+(defn parse [stmt]
+  (let [parser
+        (SqlParser/create stmt (get-parser-config))]
+    (.parseStmt parser)
+    ))
